@@ -56,10 +56,10 @@
     },
     "eslintConfig": {
         "extends": [
-            "plugin:prettier/recommended",
             "eslint:recommended",
-            "prettier/react",
-            "plugin:react/recommended"
+            "plugin:react/recommended",
+            "plugin:prettier/recommended",
+            "prettier/react"
         ],
         "parserOptions": {
             "ecmaVersion": 2017,
