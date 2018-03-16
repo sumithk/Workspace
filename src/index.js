@@ -34,7 +34,7 @@ function Header() {
 ReactDOM.render(<Header />, document.getElementById("header"));
 //Render Header
 
-//SuccessIcon Animated ---------------------------------------------------------
+//SuccessIcon Animated
 function SuccessIcon() {
   return (
     <div className="Thankyou">
@@ -77,7 +77,7 @@ function SuccessIcon() {
     </div>
   );
 }
-//SuccessIcon Animated-------------------------------------------------------------
+//SuccessIcon Animated
 
 //FeedbackForm for Rating
 class FeedbackForm extends React.Component {

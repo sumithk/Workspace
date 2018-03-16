@@ -2,7 +2,6 @@
     "address": "No:33,Flat No:006,Arrcons Agna IndraprastaShamanna Lane,Church roadMurugeshpalya Bangalore-560017",
 	"orders": [{
 		"order_id": "33666609",
-		"express_shipment_icon": "van.png",
 		"voucher": "",
 		"slot_time": "16 Mar, Friday 07:00 AM - 09:30 AM",
 		"order_value": "48.00",
