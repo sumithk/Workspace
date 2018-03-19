@@ -140,26 +140,29 @@ function Referandearn() {
 
 function Placeholder() {
   return (
-    <div className="content">
-      <div className="pannel">
-        <div className="timeline-wrapper">
-          <div className="timeline-item">
-            <div className="animated-background">
-              <div className="background-masker header-top" />
-              <div className="background-masker header-left" />
-              <div className="background-masker header-right" />
-              <div className="background-masker header-bottom" />
-              <div className="background-masker subheader-left" />
-              <div className="background-masker subheader-right" />
-              <div className="background-masker subheader-bottom" />
-              <div className="background-masker content-top" />
-              <div className="background-masker content-first-end" />
-            </div>
-          </div>
+    // <div className="content">
+    //   <div className="pannel">
+    <div className="timeline-wrapper">
+      <div className="timeline-item">
+        <div className="animated-background">
+          <div className="background-masker header-top" />
+          <div className="background-masker header-left" />
+          <div className="background-masker header-right" />
+          <div className="background-masker header-bottom" />
+          <div className="background-masker subheader-left" />
+          <div className="background-masker subheader-right" />
+          <div className="background-masker subheader-bottom" />
+          <div className="background-masker content-top" />
+          <div className="background-masker content-first-end" />
         </div>
       </div>
     </div>
+    //   </div>
+    // </div>
   );
+}
+function Placeholder1() {
+  return <div className="animated-background1" />;
 }
 
 //Star Rating handling
@@ -199,54 +202,6 @@ class FeedbackOrderExperience extends React.Component {
 }
 //Star Rating handling
 
-// var orderdetails = {
-//   address:
-//     "No:33,Flat No:006,Arrcons Agna IndraprastaShamanna Lane,Church roadMurugeshpalya Bangalore-560017",
-//   orders: [
-//     {
-//       order_id: "33666609",
-//       express_shipment_icon: "van.png",
-//       voucher: "",
-//       slot_time: "16 Mar, Friday 07:00 AM - 09:30 AM",
-//       order_value: "48.00",
-//       is_express: false,
-//       order_type: "Normal",
-//       item_count: 1,
-//       payment_method: "Cash On Delivery",
-//       order_status: "Order Placed",
-//       view_invoice: "/order/A-BBO-33666609-150318/invoice/",
-//       order_number: "A-BBO-33666609-150318"
-//     },
-//     {
-//       order_id: "33666609",
-//       express_shipment_icon: "van.png",
-//       voucher: "",
-//       slot_time: "16 Mar, Friday 07:00 AM - 09:30 AM",
-//       order_value: "48.00",
-//       is_express: false,
-//       order_type: "Normal",
-//       item_count: 1,
-//       payment_method: "Cash On Delivery",
-//       order_status: "Order Placed",
-//       view_invoice: "/order/A-BBO-33666609-150318/invoice/",
-//       order_number: "A-BBO-33666609-150318"
-//     }
-//   ],
-//   orders_details: {
-//     is_voucher_applied: false,
-//     payment_status: "Pay on delivery",
-//     payment_status_msg: {
-//       msg: "",
-//       msg_formatted_values: []
-//     },
-//     shop_more: true,
-//     order_amount: "48.00",
-//     total_savings: "0.00",
-//     voucher_msg: ""
-//   }
-// };
-//Orderdetails Stub Data
-
 //Component Address
 function MemberDetails(props) {
   return (
@@ -260,17 +215,17 @@ function MemberDetails(props) {
     </div>
   );
 }
-// Address.propTypes = {
-//   orderdetails: PropTypes.object,
-//   address: PropTypes.string
-// };
+MemberDetails.propTypes = {
+  member_details: PropTypes.object,
+  address: PropTypes.string
+};
 //Component Address
 
 //Component ShipmentSummary
 function ShipmentSummary(props) {
   return (
     <div className="pannel-item grid-container4 shipmentinfo">
-      <div className="grid-item shipment">
+      <div className="grid-item shipment fadeIn">
         <i
           className={
             "ty-icon " +
@@ -291,7 +246,7 @@ function ShipmentSummary(props) {
   );
 }
 ShipmentSummary.propTypes = {
-  orders: PropTypes.array,
+  order: PropTypes.object,
   is_express: PropTypes.bool,
   order_type: PropTypes.string,
   item_count: PropTypes.string,
@@ -300,41 +255,137 @@ ShipmentSummary.propTypes = {
 };
 //Component ShipmentSummary
 
-//Component OrderPlacedWidget
-function OrderPlacedWidget(props) {
+//Component VoucherSummary
+function VoucherSummary(props) {
   return (
-    <div className="content">
-      <SuccessIcon />
-      <FeedbackOrderExperience
-        emptySymbol={
-          <img className="star" alt="star" src={require("./star-o.svg")} />
-        }
-        fullSymbol={
-          <img className="star" alt="star" src={require("./star.svg")} />
-        }
-        fractions={2}
-      />
-      <div className="pannel">
-        <Address address={props.address} />
-        <ShipmentSummary orders={props.orders} />
+    <div className="grid-item voucherinfo">
+      <span className="text-primary">Voucher Applied</span>
+      <div>{props.vouchersummary.voucher_msg}</div>
+    </div>
+  );
+}
+VoucherSummary.propTypes = {
+  vouchersummary: PropTypes.object,
+  voucher_msg: PropTypes.string
+};
+//Component VoucherSummary
+
+//Component Orderinfo
+function PaymentSummary(props) {
+  var paymentclass = "";
+  var iconclass = "";
+  if (props.paymentsummary.payment_status === "Successfull") {
+    paymentclass = "text-primary txt-bold";
+    iconclass = "";
+  } else if (props.paymentsummary.payment_status === "Failed") {
+    paymentclass = "text-danger txt-bold";
+    iconclass = "ty-icon ty-icon-info-red-lined";
+  } else {
+    paymentclass = "text-warning txt-bold";
+    iconclass = "ty-icon ty-icon-info-orange-lined";
+  }
+
+  return (
+    <table id="t01">
+      <tbody>
+        <tr>
+          <td>Payment Status : </td>
+          <td>
+            <span className={paymentclass}>
+              {props.paymentsummary.payment_status}
+            </span>
+            <i className={iconclass} />
+          </td>
+        </tr>
+        <tr>
+          <td>Order Amount :</td>
+          <td className="txt-bold text-left">
+            Rs {props.paymentsummary.order_amount}
+          </td>
+        </tr>
+        <tr>
+          <td>You Saved :</td>
+          <td className="text-primary text-left">
+            Rs {props.paymentsummary.total_savings}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  );
+}
+PaymentSummary.propTypes = {
+  paymentsummary: PropTypes.object,
+  payment_status: PropTypes.string,
+  order_ammount: PropTypes.string,
+  total_savings: PropTypes.string
+};
+//Component Orderinfo
+
+//OrderActions section
+function OrderActions(props) {
+  const paynow = props.orderactions.shop_more;
+  const voucher = props.orderactions.is_voucher_applied;
+
+  const showpaynow = paynow ? (
+    <div className="grid-item card">
+      <div className="text-blue txt-bold text-medium">
+        <i className="ty-icon ty-icon-voucher" />PAY NOW
+      </div>
+      <p className="text-meduim txt-bold">Pay online for this order</p>
+      <p className="text-light">
+        Complete order payment for cash-free delivery
+      </p>
+    </div>
+  ) : (
+    <div className="hide" />
+  );
+
+  const showvoucher = voucher ? (
+    <div className="grid-item card">
+      <div className="text-blue txt-bold text-medium">
+        <i className="ty-icon ty-icon-add-item" />FORGOT VOUCHER?
+      </div>
+      <p className="text-meduim txt-bold">Add more items to your order </p>
+      <p className="text-light">
+        Same time delivery with no extra delivery charges!
+      </p>
+    </div>
+  ) : (
+    <div className="hide" />
+  );
+
+  return (
+    <div className="grid-container3">
+      {showpaynow}
+      {showvoucher}
+      <div className="grid-item card">
+        <div className="text-blue txt-bold text-medium">
+          <i className="ty-icon ty-icon-add-item" />FORGOT ITEM?
+        </div>
+        <p className="text-meduim txt-bold">Add more items to your order </p>
+        <p className="text-light">
+          Same time delivery with no extra delivery charges!
+        </p>
+      </div>
+      <div className="grid-item card">
+        <div className="text-blue txt-bold text-medium">
+          <i className="ty-icon ty-icon-help" />HELP
+        </div>
+        <p className="text-meduim txt-bold">Need more assistance?</p>
+        <p className="text-light">Let us help you for all your queries!</p>
       </div>
     </div>
   );
 }
-OrderPlacedWidget.propTypes = {
-  orderdetails: PropTypes.object,
-  address: PropTypes.string,
-  orders: PropTypes.array
+OrderActions.propTypes = {
+  orderactions: PropTypes.object,
+  shop_more: PropTypes.bool,
+  is_voucher_applied: PropTypes.bool
 };
-// ReactDOM.render(
-//   <OrderPlacedWidget
-//     address={orderdetails.address}
-//     orders={orderdetails.orders}
-//   />,
-//   document.getElementById("root")
-// );
+//OrderActions section
 
-class App extends React.Component {
+//Component OrderPlacedWidget
+class OrderPlacedWidget extends React.Component {
   constructor() {
     super();
 
@@ -343,7 +394,9 @@ class App extends React.Component {
       member_details: {},
       orders: [],
       orderDetails: {},
-      customer_support: {}
+      voucherSummary: {},
+      paymentSummary: {},
+      orderActions: {}
     };
   }
 
@@ -359,7 +412,10 @@ class App extends React.Component {
                 member_details: response.member_details,
                 orders: response.orders,
                 orderDetails: response.order_details,
-                customer_support: response.footer
+                customer_support: response.customer_support,
+                voucherSummary: response.order_details,
+                paymentSummary: response.order_details,
+                orderActions: response.order_details
               },
               function() {}
             );
@@ -372,11 +428,47 @@ class App extends React.Component {
   render() {
     let orders = this.state.orders;
     let member_details = this.state.member_details;
-    let loader = this.state.isLoading;
+    const loader = this.state.isLoading;
+    let vouchersummary = this.state.voucherSummary;
+    let paymentsummary = this.state.paymentSummary;
+    let orderactions = this.state.orderActions;
 
-    if (loader === true) {
-      return <Placeholder />;
-    }
+    const showDelivery = loader ? (
+      <Placeholder />
+    ) : (
+      <MemberDetails member_details={member_details} />
+    );
+    const showShipment = loader ? (
+      <div>
+        <div className="mar-top-15" />
+        <Placeholder />
+        <div className="mar-top-5" />
+        <Placeholder />
+      </div>
+    ) : (
+      orders.map(order => (
+        <ShipmentSummary key={order.order_id} order={order} />
+      ))
+    );
+    const showpaymentSummary = loader ? (
+      <div>
+        <Placeholder1 />
+        <Placeholder1 />
+        <Placeholder1 />
+      </div>
+    ) : (
+      <div className="grid-item paymentinfo">
+        <PaymentSummary paymentsummary={paymentsummary} />
+      </div>
+    );
+    const voucherSummary = loader ? (
+      <div>
+        <Placeholder1 />
+        <Placeholder1 />
+      </div>
+    ) : (
+      <VoucherSummary vouchersummary={vouchersummary} />
+    );
 
     return (
       <div className="content">
@@ -391,32 +483,33 @@ class App extends React.Component {
           fractions={2}
         />
         <div className="pannel">
-          <MemberDetails
-            key={member_details.id}
-            member_details={member_details}
-          />
-
-          {orders.map(order => (
-            <ShipmentSummary key={order.order_id} order={order} />
-          ))}
+          {showDelivery}
+          {showShipment}
+          <div className="grid-container2 orderinfo">
+            {voucherSummary}
+            {showpaymentSummary}
+          </div>
+        </div>
+        <div className="assistance">
+          <OrderActions orderactions={orderactions} />
         </div>
       </div>
     );
   }
 }
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<OrderPlacedWidget />, document.getElementById("root"));
 //Component OrderPlacedWidget
 
-//Render Footer
-// function Footer() {
-//   return (
-//     <div className="footer">
-//       <p className="text-center">
-//         For Futher enquiries: Call: 1860123100 | E-mail:
-//         customerservice@bigbasket.com
-//       </p>
-//     </div>
-//   );
-// }
-// ReactDOM.render(<Footer />, document.getElementById("footer"));
-//Render Footer
+// Render Footer
+function Footer() {
+  return (
+    <div className="footer">
+      <p className="text-center">
+        For Further enquiries: Call: 1860123100 | E-mail:
+        customerservice@bigbasket.com
+      </p>
+    </div>
+  );
+}
+ReactDOM.render(<Footer />, document.getElementById("footer"));
+// Render Footer

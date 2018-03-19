@@ -52,6 +52,12 @@ body {
 	font-size: 16px;
 }
 /*----------- Color Pallete -----------*/
+.mar-top-15 {
+  margin-top:15px;
+}
+.mar-top-5 {
+  margin-top:5px;
+}
 .container {
 
 	background: #f7f7f7;
@@ -347,7 +353,8 @@ body {
 }
 .orderinfo {
 	align-items: end;
-	padding:0;
+  padding:0;
+  min-height: 56px;
 }
 .orderinfo div div {
 	margin: 5px 0;
@@ -362,22 +369,27 @@ body {
 	text-align: right;
 	font-size: 12px;
 	padding:0;
-	color:#444;
+  color:#444;
+  align-items: right;
 }
 .orderinfo .paymentinfo table {
 	float: right;
 }
 .card {
-	width: 195px;
+	width: 193px;
   background: #fff;
   border: 1px solid #dedede;
   border-radius: 5px;
+  margin: 10px auto;
 }
-.card p {
+.hide {
+  display: none;
+}
+    .card p {
 	font-size: 12px;
 	margin: 5px;
 }
-#assistance .ty-icon:before {
+.assistance .ty-icon:before {
 	vertical-align: bottom;
   margin-right: 10px;
 	font-size: 9px;
@@ -524,4 +536,27 @@ body {
 .background-masker.content-third-end {
   left: 300px;
   top: 88px;
+}
+
+@keyframes placeHolderShimmer1{
+  0%{
+      background-position: -468px 0
+  }
+  100%{
+      background-position: 468px 0
+  }
+}
+
+.animated-background1 {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer1;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 8px;
+  margin: 5px 0;
+  position: relative;
 }
