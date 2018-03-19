@@ -138,6 +138,30 @@ function Referandearn() {
 }
 //Component Refer&Earn
 
+function Placeholder() {
+  return (
+    <div className="content">
+      <div className="pannel">
+        <div className="timeline-wrapper">
+          <div className="timeline-item">
+            <div className="animated-background">
+              <div className="background-masker header-top" />
+              <div className="background-masker header-left" />
+              <div className="background-masker header-right" />
+              <div className="background-masker header-bottom" />
+              <div className="background-masker subheader-left" />
+              <div className="background-masker subheader-right" />
+              <div className="background-masker subheader-bottom" />
+              <div className="background-masker content-top" />
+              <div className="background-masker content-first-end" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 //Star Rating handling
 class FeedbackOrderExperience extends React.Component {
   constructor(props) {
@@ -175,55 +199,71 @@ class FeedbackOrderExperience extends React.Component {
 }
 //Star Rating handling
 
-var orderdetails = {
-  address:
-    "No:33,Flat No:006,Arrcons Agna IndraprastaShamanna Lane,Church roadMurugeshpalya Bangalore-560017",
-  orders: [
-    {
-      order_id: "33666609",
-      express_shipment_icon: "van.png",
-      voucher: "",
-      slot_time: "16 Mar, Friday 07:00 AM - 09:30 AM",
-      order_value: "48.00",
-      is_express: false,
-      order_type: "Normal",
-      item_count: 1,
-      payment_method: "Cash On Delivery",
-      order_status: "Order Placed",
-      view_invoice: "/order/A-BBO-33666609-150318/invoice/",
-      order_number: "A-BBO-33666609-150318"
-    }
-  ],
-  orders_details: {
-    is_voucher_applied: false,
-    payment_status: "Pay on delivery",
-    payment_status_msg: {
-      msg: "",
-      msg_formatted_values: []
-    },
-    shop_more: true,
-    order_amount: "48.00",
-    total_savings: "0.00",
-    voucher_msg: ""
-  }
-};
+// var orderdetails = {
+//   address:
+//     "No:33,Flat No:006,Arrcons Agna IndraprastaShamanna Lane,Church roadMurugeshpalya Bangalore-560017",
+//   orders: [
+//     {
+//       order_id: "33666609",
+//       express_shipment_icon: "van.png",
+//       voucher: "",
+//       slot_time: "16 Mar, Friday 07:00 AM - 09:30 AM",
+//       order_value: "48.00",
+//       is_express: false,
+//       order_type: "Normal",
+//       item_count: 1,
+//       payment_method: "Cash On Delivery",
+//       order_status: "Order Placed",
+//       view_invoice: "/order/A-BBO-33666609-150318/invoice/",
+//       order_number: "A-BBO-33666609-150318"
+//     },
+//     {
+//       order_id: "33666609",
+//       express_shipment_icon: "van.png",
+//       voucher: "",
+//       slot_time: "16 Mar, Friday 07:00 AM - 09:30 AM",
+//       order_value: "48.00",
+//       is_express: false,
+//       order_type: "Normal",
+//       item_count: 1,
+//       payment_method: "Cash On Delivery",
+//       order_status: "Order Placed",
+//       view_invoice: "/order/A-BBO-33666609-150318/invoice/",
+//       order_number: "A-BBO-33666609-150318"
+//     }
+//   ],
+//   orders_details: {
+//     is_voucher_applied: false,
+//     payment_status: "Pay on delivery",
+//     payment_status_msg: {
+//       msg: "",
+//       msg_formatted_values: []
+//     },
+//     shop_more: true,
+//     order_amount: "48.00",
+//     total_savings: "0.00",
+//     voucher_msg: ""
+//   }
+// };
 //Orderdetails Stub Data
 
 //Component Address
-function Address(props) {
+function MemberDetails(props) {
   return (
     <div className="pannel-item grid-container2 deliveryinfo">
       <div className="grid-item title">
         <i className="ty-icon ty-icon-location" />Delivery Address
       </div>
-      <div className="grid-item address">{props.address}</div>
+      <div className="grid-item address">
+        {props.member_details.name}, {props.member_details.address}
+      </div>
     </div>
   );
 }
-Address.propTypes = {
-  orderdetails: PropTypes.object,
-  address: PropTypes.string
-};
+// Address.propTypes = {
+//   orderdetails: PropTypes.object,
+//   address: PropTypes.string
+// };
 //Component Address
 
 //Component ShipmentSummary
@@ -234,18 +274,19 @@ function ShipmentSummary(props) {
         <i
           className={
             "ty-icon " +
-            (props.orders.is_express == true
+            (props.order.is_express == true
               ? "ty-icon-exp-del"
               : "ty-icon-std-delivery")
           }
-        />Shipment 1: {props.orders.order_type}
+        />
+        Shipment 1: {props.order.order_type}
       </div>
       <div className="grid-item items">
-        <div>{props.orders.item_count}</div>
+        <div>{props.order.item_count}</div>
         <div>Items</div>
       </div>
-      <div className="grid-item slot">{props.orders.slot_time}</div>
-      <div className="grid-item price"> Rs {props.orders.order_value}</div>
+      <div className="grid-item slot">{props.order.slot_time}</div>
+      <div className="grid-item price"> Rs {props.order.order_value}</div>
     </div>
   );
 }
@@ -285,13 +326,85 @@ OrderPlacedWidget.propTypes = {
   address: PropTypes.string,
   orders: PropTypes.array
 };
-ReactDOM.render(
-  <OrderPlacedWidget
-    address={orderdetails.address}
-    orders={orderdetails.orders}
-  />,
-  document.getElementById("root")
-);
+// ReactDOM.render(
+//   <OrderPlacedWidget
+//     address={orderdetails.address}
+//     orders={orderdetails.orders}
+//   />,
+//   document.getElementById("root")
+// );
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isLoading: true,
+      member_details: {},
+      orders: [],
+      orderDetails: {},
+      customer_support: {}
+    };
+  }
+
+  componentDidMount() {
+    return fetch("http://localhost:3004/db")
+      .then(response => response.json())
+      .then(response => {
+        setTimeout(
+          function() {
+            this.setState(
+              {
+                isLoading: false,
+                member_details: response.member_details,
+                orders: response.orders,
+                orderDetails: response.order_details,
+                customer_support: response.footer
+              },
+              function() {}
+            );
+          }.bind(this),
+          3000
+        );
+      });
+  }
+
+  render() {
+    let orders = this.state.orders;
+    let member_details = this.state.member_details;
+    let loader = this.state.isLoading;
+
+    if (loader === true) {
+      return <Placeholder />;
+    }
+
+    return (
+      <div className="content">
+        <SuccessIcon />
+        <FeedbackOrderExperience
+          emptySymbol={
+            <img className="star" alt="star" src={require("./star-o.svg")} />
+          }
+          fullSymbol={
+            <img className="star" alt="star" src={require("./star.svg")} />
+          }
+          fractions={2}
+        />
+        <div className="pannel">
+          <MemberDetails
+            key={member_details.id}
+            member_details={member_details}
+          />
+
+          {orders.map(order => (
+            <ShipmentSummary key={order.order_id} order={order} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<App />, document.getElementById("root"));
 //Component OrderPlacedWidget
 
 //Render Footer
