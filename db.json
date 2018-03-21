@@ -25,16 +25,27 @@
         "order_value":"50.00",
         "is_express":true,
         "order_type":"Express",
+        "fulfillment_info":{  
+            "actual_fulfillment_id":"",
+            "display_name":"Standard ",
+            "type":"normal",
+            "fulfillment_id":1,
+            "icon_url":null,
+            "fulfilled_by_info_page":"",
+            "fulfilled_by":"Sold & fulfilled by Bigbasket",
+            "tc2":"",
+            "tc1":""
+         },
         "item_count":3,
         "payment_method":"Cash On Delivery",
         "order_status":"Order Placed",
-        "view_invoice":"/order/A-BBO-33666645-190318/invoice/",
+        "detail_page_link":"/order/A-BBO-33666645-190318/details/",
         "order_number":"A-BBO-33666645-190318"
      }
     ],
     "order_details":{  
-       "is_voucher_applied":true,
-       "payment_status":"Successfull",
+       "is_voucher_applied":false,
+       "payment_status":"Failed",
        "payment_status_msg":{  
           "msg":"Your online payment on bigbasket was not successful. You can retry the payment again choosing <a href=\"/payment/pay_now/\" target=\"_blank\" style=\"text-decoration: underline\"> pay now </a> pay now option.Meanwhile, please do not worry,your has been converted to cash on delivery.",
           "msg_formatted_values":[  
@@ -44,7 +55,7 @@
        "shop_more":false,
        "order_amount":"40.00",
        "total_savings":"0.00",
-       "voucher_msg":"Voucher Message"
+       "voucher_msg":"The cashback amount Rs 500 will be credited within 5 days"
     },
     "customer_support": {
         "support_no":"1860 123 1000"
