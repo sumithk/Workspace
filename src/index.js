@@ -246,7 +246,7 @@ class FeedbackOrderExperience extends React.Component {
   }
   handleFeedbackClose() {
     debugger;
-    this.setState({ rating: 0 });
+    this.setState({ rating: 1 });
   }
   handleReferAndEarn() {
     window.location = "/referandearn";
@@ -266,7 +266,12 @@ class FeedbackOrderExperience extends React.Component {
   render() {
     const rating = this.state.rating;
     return (
-      <div>
+      <div
+        className={
+          "section collapsible " +
+          (rating > 1 && rating <= 3 ? "" : "collapsed")
+        }
+      >
         <div className="stars">
           <form onSubmit={this.handleSubmit}>
             <div className="grid-container2">
@@ -320,59 +325,57 @@ class FeedbackOrderExperience extends React.Component {
               </div>
             </div>
             {rating == 1 && (
-              <div className="text-dark txt-bold">
+              <div className="text-dark txt-bold fade">
                 Oho! Sorry for the inconvenience, We will get back to you
                 shortly{" "}
               </div>
             )}
-            <div>
-              {rating > 1 &&
-                rating <= 3 && (
-                  <div className="feedback-form">
-                    <textarea
-                      className="form-control"
-                      value={this.state.feedback}
-                      name="feedback"
-                      placeholder="Tell us what went wrong."
-                      onChange={this.handleFeedback}
-                    />
-                    <div className="clearfix">
-                      <Ripples className="btn-ripple fl-rt" color="#666">
-                        <button type="submit" className="btn btn-secondary">
-                          SUBMIT
-                        </button>
-                      </Ripples>
-                      <Ripples className="btn-ripple fl-rt" color="#dfdfdf">
-                        <button
-                          type="button"
-                          className="btn btn-default"
-                          onClick={this.handleFeedbackClose}
-                        >
-                          NOT NOW
-                        </button>
-                      </Ripples>
-                    </div>
+            {rating > 1 &&
+              rating <= 3 && (
+                <div className="feedback-form fade">
+                  <textarea
+                    className="form-control"
+                    value={this.state.feedback}
+                    name="feedback"
+                    placeholder="Tell us what went wrong."
+                    onChange={this.handleFeedback}
+                  />
+                  <div className="clearfix">
+                    <Ripples className="btn-ripple fl-rt" color="#666">
+                      <button type="submit" className="btn btn-secondary">
+                        SUBMIT
+                      </button>
+                    </Ripples>
+                    <Ripples className="btn-ripple fl-rt" color="#dfdfdf">
+                      <button
+                        type="button"
+                        className="btn btn-default"
+                        onClick={this.handleFeedbackClose}
+                      >
+                        NOT NOW
+                      </button>
+                    </Ripples>
                   </div>
-                )}
-
-              {rating >= 4 && (
-                <div className="clearfix">
-                  <div className="text-center seperator">
-                    <span>THANKS A LOT</span>
-                  </div>
-                  <Ripples color="#dfdfdf">
-                    <button
-                      type="button"
-                      onClick={this.handleReferAndEarn}
-                      className="btn btn-default btn-refer"
-                    >
-                      <i className="ty-icon ty-icon-rupee-circle" />
-                      REFER & EARN
-                    </button>
-                  </Ripples>
                 </div>
               )}
-            </div>
+
+            {rating >= 4 && (
+              <div className="clearfix fade">
+                <div className="text-center seperator">
+                  <span>THANKS A LOT</span>
+                </div>
+                <Ripples color="#dfdfdf">
+                  <button
+                    type="button"
+                    onClick={this.handleReferAndEarn}
+                    className="btn btn-default btn-refer"
+                  >
+                    <i className="ty-icon ty-icon-rupee-circle" />
+                    REFER & EARN
+                  </button>
+                </Ripples>
+              </div>
+            )}
           </form>
         </div>
       </div>
@@ -529,7 +532,7 @@ class PaymentSummary extends React.Component {
                 />
               )}
               {this.state.hovering && (
-                <div className="tooltip">
+                <div className="tooltip fade">
                   <span
                     className="ty-icon ty-icon-close"
                     onClick={handleMouseLeave}

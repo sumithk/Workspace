@@ -88,6 +88,27 @@ body {
   position: relative;
 }
 
+
+
+.fade {
+  animation: 0.4s ease-out fade 1;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+div {
+  -webkit-transition: height 4s; /* For Safari 3.1 to 6.0 */
+    transition: height 4s;
+}
+
 /*----------- Success Animated Icon -----------*/
 @-webkit-keyframes scaleAnimation {
   0% {
