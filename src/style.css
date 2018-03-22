@@ -263,9 +263,6 @@ body {
 	width: 450px;
 	margin: 0 auto;
 }
-.star {
-	margin:0 3px;
-}
 
 .pannel {
 	background: #f7f7f7;
@@ -753,19 +750,18 @@ body {
   transform-origin: 0 0;
   transform: rotate(-45deg);
   box-shadow: -3px 3px 5px 0 rgba(0,0,0,.1);
-  }
-  .ty-icon.ty-icon-close {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-  }
-
+}
+.ty-icon.ty-icon-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
   
 .stars {
   display: inline-block;
 }
 .stars .grid-container2 {
-  width: 350px;
+  width: 320px;
   margin: 0 auto;
 }
 
@@ -779,23 +775,13 @@ label.star {
   transition: all .2s;
 }
 
-
 input.star:checked ~ label.star:before,
 input.star:hover ~ label.star:before {
   content: '★';
   color: #FD4;
-  /* transition: all .25s; */
-  padding:0 2.1px;
+  padding:0 2.3px;
+  line-height: 1.3;
 }
-
-input.star-5:checked ~ .inline label.star:before {
-  /* color: #FE7; */
-  /* text-shadow: 0 0 20px #952; */
-}
-
-/* input.star-1:checked ~ label.star:before { color: #F62; } */
-
-/* label.star:hover { transform: rotate(-15deg) scale(1.3); } */
 
 label.star:before {
   content: '☆';
