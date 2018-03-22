@@ -532,7 +532,7 @@ class PaymentSummary extends React.Component {
                 />
               )}
               {this.state.hovering && (
-                <div className="tooltip fade">
+                <div className="tooltip">
                   <span
                     className="ty-icon ty-icon-close"
                     onClick={handleMouseLeave}

@@ -104,9 +104,15 @@ body {
     visibility: visible;
   }
 }
-div {
-  -webkit-transition: height 4s; /* For Safari 3.1 to 6.0 */
-    transition: height 4s;
+
+.section {
+  overflow:hidden;
+  transition:max-height 0.3s ease-out;
+  height:auto;
+  max-height:600px;
+}
+.section.collapsed {
+  min-height:100px;
 }
 
 /*----------- Success Animated Icon -----------*/
