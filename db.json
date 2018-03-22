@@ -2,7 +2,8 @@
     "member_details":{  
         "address":"No:33,Flat No:006,Arrcons Agna Indraprasta Bangalore-560017",
         "name":"krishna Mohan",
-        "id":1
+        "id":1,
+        "email":"krishna@gmail.com"
      },
     "orders":[  
        {  
@@ -15,7 +16,7 @@
           "item_count":1,
           "payment_method":"Cash On Delivery",
           "order_status":"Order Placed",
-          "view_invoice":"/order/A-BBO-33666645-190318/invoice/",
+          "detail_page_link":"/order/A-BBO-33666645-190318/invoice/",
           "order_number":"A-BBO-33666645-190318"
        },
        {  
@@ -44,7 +45,7 @@
      }
     ],
     "order_details":{  
-       "is_voucher_applied":false,
+       "is_voucher_applied":true,
        "payment_status":"Failed",
        "payment_status_msg":{  
           "msg":"Your online payment on bigbasket was not successful. You can retry the payment again choosing <a href=\"/payment/pay_now/\" target=\"_blank\" style=\"text-decoration: underline\"> pay now </a> pay now option.Meanwhile, please do not worry,your has been converted to cash on delivery.",

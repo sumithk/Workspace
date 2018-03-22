@@ -223,23 +223,9 @@ function BtnLoader() {
   );
 }
 
-//Component Refer&Earn
-function Referandearn() {
-  return (
-    <div className="clearfix">
-      <Ripples color="#dfdfdf">
-        <button type="button" className="btn btn-default">
-          Refer & earn
-        </button>
-      </Ripples>
-    </div>
-  );
-}
-//Component Refer&Earn
-
 class FeedbackOrderExperience extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       rating: 0,
       feedback: "",
@@ -249,6 +235,7 @@ class FeedbackOrderExperience extends React.Component {
     this.handleFeedback = this.handleFeedback.bind(this);
     this.handleFeedbackClose = this.handleFeedbackClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReferAndEarn = this.handleReferAndEarn.bind(this);
   }
 
   handleRadio(e) {
@@ -258,7 +245,11 @@ class FeedbackOrderExperience extends React.Component {
     this.setState({ feedback: e.target.value });
   }
   handleFeedbackClose() {
-    this.setState({ isFeedbackForm: false });
+    debugger;
+    this.setState({ rating: 0 });
+  }
+  handleReferAndEarn() {
+    window.location = "/referandearn";
   }
 
   handleSubmit(e) {
@@ -266,97 +257,121 @@ class FeedbackOrderExperience extends React.Component {
 
     const feedbackData = {
       rating: this.state.rating,
-      feedback: this.state.feedback
+      feedback: this.state.feedback,
+      email_id: this.props.member_email
     };
     console.log("Send this in a POST request:", feedbackData);
   }
 
   render() {
     const rating = this.state.rating;
-    debugger;
-    const isFeedbackForm = false;
-    const showFeedbackForm = rating > 1 || (rating <= 3 && isFeedbackForm);
     return (
       <div>
         <div className="stars">
           <form onSubmit={this.handleSubmit}>
-            <div className="stars">
-              <input
-                className="star star-5"
-                id="star-5"
-                type="radio"
-                name="star"
-                value="5"
-                onChange={this.handleRadio}
-              />
-              <label className="star star-5" htmlFor="star-5" />
-              <input
-                className="star star-4"
-                id="star-4"
-                type="radio"
-                name="star"
-                value="4"
-                onChange={this.handleRadio}
-              />
-              <label className="star star-4" htmlFor="star-4" />
-              <input
-                className="star star-3"
-                id="star-3"
-                type="radio"
-                name="star"
-                value="3"
-                onChange={this.handleRadio}
-              />
-              <label className="star star-3" htmlFor="star-3" />
-              <input
-                className="star star-2"
-                id="star-2"
-                type="radio"
-                name="star"
-                value="2"
-                onChange={this.handleRadio}
-              />
-              <label className="star star-2" htmlFor="star-2" />
-              <input
-                className="star star-1"
-                id="star-1"
-                type="radio"
-                name="star"
-                value="1"
-                onChange={this.handleRadio}
-              />
-              <label className="star star-1" htmlFor="star-1" />
+            <div className="grid-container2">
+              <div className="grid-item">How was everything?</div>
+              <div className="grid-item">
+                <input
+                  className="star star-5"
+                  id="star-5"
+                  type="radio"
+                  name="star"
+                  value="5"
+                  onChange={this.handleRadio}
+                />
+                <label className="star star-5" htmlFor="star-5" />
+                <input
+                  className="star star-4"
+                  id="star-4"
+                  type="radio"
+                  name="star"
+                  value="4"
+                  onChange={this.handleRadio}
+                />
+                <label className="star star-4" htmlFor="star-4" />
+                <input
+                  className="star star-3"
+                  id="star-3"
+                  type="radio"
+                  name="star"
+                  value="3"
+                  onChange={this.handleRadio}
+                />
+                <label className="star star-3" htmlFor="star-3" />
+                <input
+                  className="star star-2"
+                  id="star-2"
+                  type="radio"
+                  name="star"
+                  value="2"
+                  onChange={this.handleRadio}
+                />
+                <label className="star star-2" htmlFor="star-2" />
+                <input
+                  className="star star-1"
+                  id="star-1"
+                  type="radio"
+                  name="star"
+                  value="1"
+                  onChange={this.handleRadio}
+                />
+                <label className="star star-1" htmlFor="star-1" />
+              </div>
             </div>
+            {rating == 1 && (
+              <div className="text-dark txt-bold">
+                Oho! Sorry for the inconvenience, We will get back to you
+                shortly{" "}
+              </div>
+            )}
             <div>
-              {showFeedbackForm && (
-                <div className="feedback-form">
-                  <textarea
-                    className="form-control"
-                    value={this.state.feedback}
-                    name="feedback"
-                    placeholder="Tell us what went wrong."
-                    onChange={this.handleFeedback}
-                  />
-                  <div className="clearfix">
-                    <Ripples className="btn-ripple fl-rt" color="#666">
-                      <button type="submit" className="btn btn-secondary">
-                        SUBMIT
-                      </button>
-                    </Ripples>
-                    <Ripples className="btn-ripple fl-rt" color="#dfdfdf">
-                      <button
-                        type="button"
-                        className="btn btn-default"
-                        onClick={this.handleFeedbackClose}
-                      >
-                        NOT NOW
-                      </button>
-                    </Ripples>
+              {rating > 1 &&
+                rating <= 3 && (
+                  <div className="feedback-form">
+                    <textarea
+                      className="form-control"
+                      value={this.state.feedback}
+                      name="feedback"
+                      placeholder="Tell us what went wrong."
+                      onChange={this.handleFeedback}
+                    />
+                    <div className="clearfix">
+                      <Ripples className="btn-ripple fl-rt" color="#666">
+                        <button type="submit" className="btn btn-secondary">
+                          SUBMIT
+                        </button>
+                      </Ripples>
+                      <Ripples className="btn-ripple fl-rt" color="#dfdfdf">
+                        <button
+                          type="button"
+                          className="btn btn-default"
+                          onClick={this.handleFeedbackClose}
+                        >
+                          NOT NOW
+                        </button>
+                      </Ripples>
+                    </div>
                   </div>
+                )}
+
+              {rating >= 4 && (
+                <div className="clearfix">
+                  <div className="text-center seperator">
+                    <span>THANKS A LOT</span>
+                  </div>
+                  <Ripples color="#dfdfdf">
+                    <button
+                      type="button"
+                      onClick={this.handleReferAndEarn}
+                      className="btn btn-default btn-refer"
+                    >
+                      <i className="ty-icon ty-icon-rupee-circle" />
+                      REFER & EARN
+                    </button>
+                  </Ripples>
                 </div>
               )}
-
-              {rating >= 4 && <Referandearn />}
             </div>
           </form>
         </div>
@@ -364,6 +379,10 @@ class FeedbackOrderExperience extends React.Component {
     );
   }
 }
+FeedbackOrderExperience.propTypes = {
+  member_email: PropTypes.string
+};
+//FeedbackOrderExperience
 
 //Component Address
 function MemberDetails(props) {
@@ -372,7 +391,7 @@ function MemberDetails(props) {
       <div className="grid-item title">
         <i className="ty-icon ty-icon-location" />Delivery Address
       </div>
-      <div className="grid-item address">
+      <div className="grid-item address text-dark">
         {props.member_details.name}, {props.member_details.address}
       </div>
     </div>
@@ -385,30 +404,44 @@ MemberDetails.propTypes = {
 //Component Address
 
 //Component ShipmentSummary
-function ShipmentSummary(props) {
-  return (
-    <Ripples color="#f2f2f2">
-      <div className="pannel-item grid-container4 shipmentinfo">
-        <div className="grid-item shipment fadeIn">
-          <i
-            className={
-              "ty-icon " +
-              (props.order.is_express == true
-                ? "ty-icon-exp-del"
-                : "ty-icon-std-delivery")
-            }
-          />
-          Shipment 1: {props.order.order_type}
+class ShipmentSummary extends React.Component {
+  constructor() {
+    super();
+    this.handleShipmentClick = this.handleShipmentClick.bind(this);
+  }
+
+  handleShipmentClick() {
+    window.location = this.props.order.detail_page_link;
+  }
+
+  render() {
+    return (
+      <Ripples color="#f2f2f2" onClick={this.handleShipmentClick}>
+        <div className="pannel-item grid-container4 shipmentinfo">
+          <div className="grid-item shipment fadeIn">
+            <i
+              className={
+                "ty-icon " +
+                (this.props.order.is_express == true
+                  ? "ty-icon-exp-del"
+                  : "ty-icon-std-delivery")
+              }
+            />
+            Shipment 1: {this.props.order.order_type}
+          </div>
+          <div className="grid-item items">
+            <div>{this.props.order.item_count}</div>
+            <div>Item{this.props.order.item_count > 1 && "s"}</div>
+          </div>
+          <div className="grid-item slot">{this.props.order.slot_time}</div>
+          <div className="grid-item price">
+            Rs {this.props.order.order_value}
+            <i className="ty-icon ty-icon-arrow-right" />
+          </div>
         </div>
-        <div className="grid-item items">
-          <div>{props.order.item_count}</div>
-          <div>Item{props.order.item_count > 1 && "s"}</div>
-        </div>
-        <div className="grid-item slot">{props.order.slot_time}</div>
-        <div className="grid-item price"> Rs {props.order.order_value}</div>
-      </div>
-    </Ripples>
-  );
+      </Ripples>
+    );
+  }
 }
 ShipmentSummary.propTypes = {
   order: PropTypes.object,
@@ -425,7 +458,10 @@ function VoucherSummary(props) {
   const voucerapplied = props.vouchersummary.is_voucher_applied;
   const showvoucher = voucerapplied ? (
     <div className="grid-item voucherinfo">
-      <span className="text-primary">Voucher Applied</span>
+      <span className="text-primary">
+        <span>Voucher Applied</span>
+        <i className="ty-icon ty-icon-success-sm" />
+      </span>
       <div>{props.vouchersummary.voucher_msg}</div>
     </div>
   ) : (
@@ -468,7 +504,7 @@ class PaymentSummary extends React.Component {
         <tbody>
           <tr>
             <td>Payment Status : </td>
-            <td className="pos-relative">
+            <td className="pos-relative text-medium">
               <span className={paymentclass}>
                 {this.props.paymentsummary.payment_status}
               </span>
@@ -498,10 +534,7 @@ class PaymentSummary extends React.Component {
                     className="ty-icon ty-icon-close"
                     onClick={handleMouseLeave}
                   />
-                  Your online payment on bigbasket was not successful. You can
-                  retry the payment again choosing pay now option. Meanwhile,
-                  please do not worry, your order has been converted to cash on
-                  delivery
+                  {this.props.paymentsummary.payment_status_msg.msg}
                 </div>
               )}
             </td>
@@ -543,19 +576,19 @@ class OrderActions extends React.Component {
   }
 
   handlePaynowClick() {
-    alert("clicked Paynow");
+    window.location = "/paynow";
   }
 
   handleVoucherClick() {
-    alert("clicked Voucher");
+    window.location = "/voucher";
   }
 
   handleShopmoreClick() {
-    alert("clicked Shop more");
+    window.location = "/shopmore";
   }
 
   handleSupportClick() {
-    alert("clicked Support");
+    window.location = "/support";
   }
   render() {
     const ispaynow =
@@ -644,7 +677,8 @@ class OrderPlacedWidget extends React.Component {
       orderDetails: {},
       voucherSummary: {},
       paymentSummary: {},
-      orderActions: {}
+      orderActions: {},
+      member_email: ""
     };
   }
 
@@ -663,7 +697,8 @@ class OrderPlacedWidget extends React.Component {
                 customer_support: response.customer_support,
                 voucherSummary: response.order_details,
                 paymentSummary: response.order_details,
-                orderActions: response.order_details
+                orderActions: response.order_details,
+                member_email: response.member_details.email
               },
               function() {}
             );
@@ -680,20 +715,13 @@ class OrderPlacedWidget extends React.Component {
     let vouchersummary = this.state.voucherSummary;
     let paymentsummary = this.state.paymentSummary;
     let orderactions = this.state.orderActions;
+    let member_email = this.state.member_email;
 
     return (
       <div className="content">
         <div className="feedback-order-experience">
           <SuccessIcon />
-          <FeedbackOrderExperience
-            emptySymbol={
-              <img className="star" alt="star" src={require("./star-o.svg")} />
-            }
-            fullSymbol={
-              <img className="star" alt="star" src={require("./star.svg")} />
-            }
-            fractions={2}
-          />
+          <FeedbackOrderExperience member_email={member_email} />
         </div>
         <div className="pannel">
           {loader ? (
@@ -748,15 +776,15 @@ class OrderPlacedWidget extends React.Component {
             <OrderActions orderactions={orderactions} />
           )}
         </div>
-        <div className="btn btn-primary btn-lg">
+        <a href="/home" className="btn btn-primary btn-lg">
           {loader && <BtnLoader />}
           <span>CONTINUE SHOPPING</span>
-        </div>
+        </a>
       </div>
     );
   }
 }
-ReactDOM.render(<OrderPlacedWidget />, document.getElementById("root"));
+ReactDOM.render(<OrderPlacedWidget />, document.getElementById("content"));
 //Component OrderPlacedWidget
 
 // Render Footer

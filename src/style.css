@@ -259,6 +259,7 @@ body {
   display: inline-block;
   position: relative;
   padding: 7px 19px 6px 19px;
+  text-decoration: none;
   font-family: 'ProximaNova-Regular';
   margin-bottom: 0;
   font-size: 14px;
@@ -282,9 +283,19 @@ body {
 }
 
 .btn-default {
-	border: 1px solid #dedede;
+	border: 1px solid #979797;
 	background: #fff;
 	color: #666;
+}
+.seperator {
+  text-align:center;
+  border-bottom: 1px solid #979797;
+  line-height:0;
+  margin: 25px auto;
+}
+.seperator span {
+  background:#fff;
+  padding:0 10px;
 }
 
 .btn-ripple-submit {
@@ -316,6 +327,13 @@ body {
 .rating-txt {
 	vertical-align: super;
 	margin-right: 10px;
+}
+.btn-refer {
+  padding: 6px 8px 5px 8px;
+}
+.btn-refer .ty-icon-rupee-circle {
+  vertical-align: super;
+  margin-right: 5px;
 }
 .grid-container1 {
   display: grid;
@@ -362,10 +380,18 @@ body {
 .shipmentinfo {
   align-items: center;
   cursor: pointer;
+  transition: all ease .4s;
+}
+.shipmentinfo:hover {
+  border: 1px solid #dedede;
 }
 .shipmentinfo .ty-icon,
 .deliveryinfo .ty-icon {
 	margin-right: 10px;
+}
+.shipmentinfo .ty-icon-arrow-right {
+  margin:0;
+  float: right;
 }
 .shipmentinfo .shipment {
 	font-size: 12px;
@@ -407,11 +433,19 @@ body {
   color:#444;
   align-items: right;
 }
+.orderinfo .paymentinfo table tr td {
+  padding: 5px 0;
+}
 .orderinfo .paymentinfo .ty-icon {
   display: inline-block;
   vertical-align: middle;
   margin: 0 0 3px 6px;
   cursor: pointer;
+}
+.voucherinfo .ty-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 3px 6px;
 }
 .orderinfo .paymentinfo table {
 	float: right;
@@ -672,8 +706,8 @@ body {
   background: #fff;
   text-align: justify;
   width: 320px;
-  right: -15px;
-  bottom: 20px;
+  right: -17px;
+  bottom: 25px;
   color: #1a1a1a;
   font-size: 14px;
   padding: 15px 10px;
@@ -703,32 +737,38 @@ body {
 .stars {
   display: inline-block;
 }
+.stars .grid-container2 {
+  width: 350px;
+  margin: 0 auto;
+}
 
 input.star { display: none; }
 
 label.star {
   float: right;
   padding: 0;
-  font-size: 36px;
+  font-size: 33px;
   color: #444;
   transition: all .2s;
 }
 
-input.star:checked ~ label.star:before {
+
+input.star:checked ~ label.star:before,
+input.star:hover ~ label.star:before {
   content: '★';
   color: #FD4;
-  transition: all .25s;
-  padding:0 2px;
+  /* transition: all .25s; */
+  padding:0 2.1px;
 }
 
 input.star-5:checked ~ .inline label.star:before {
-  color: #FE7;
+  /* color: #FE7; */
   /* text-shadow: 0 0 20px #952; */
 }
 
-input.star-1:checked ~ label.star:before { color: #F62; }
+/* input.star-1:checked ~ label.star:before { color: #F62; } */
 
-label.star:hover { transform: rotate(-15deg) scale(1.3); }
+/* label.star:hover { transform: rotate(-15deg) scale(1.3); } */
 
 label.star:before {
   content: '☆';

@@ -8,9 +8,8 @@
     display: inline-block;
     background-image: url("./ty.svg");
     background-repeat: no-repeat;
-    background-size: 61em 50.4em;
+    background-size: 66.5em 55.4em;
 }
-
 
 
   .ty-icon.ty-icon-add-item:before {
@@ -148,8 +147,17 @@
 
 
 
-  .ty-icon.ty-icon-return:before {
+  .ty-icon.ty-icon-refresh:before {
       background-position: -45.9em -36.1em;
+      width: 2em;
+      height: 1.8em;
+  }
+
+
+
+
+  .ty-icon.ty-icon-return:before {
+      background-position: -47.9em -37.9em;
       width: 3em;
       height: 3em;
   }
@@ -158,7 +166,7 @@
 
 
   .ty-icon.ty-icon-rupee-circle:before {
-      background-position: -48.9em -39.1em;
+      background-position: -50.9em -40.9em;
       width: 2em;
       height: 2em;
   }
@@ -167,7 +175,7 @@
 
 
   .ty-icon.ty-icon-star-filled:before {
-      background-position: -50.9em -41.1em;
+      background-position: -52.9em -42.9em;
       width: 2.1em;
       height: 2em;
   }
@@ -175,8 +183,17 @@
 
 
 
+  .ty-icon.ty-icon-star-lined:before {
+      background-position: -55em -44.9em;
+      width: 2.2em;
+      height: 2em;
+  }
+
+
+
+
   .ty-icon.ty-icon-std-delivery:before {
-      background-position: -53em -43.1em;
+      background-position: -57.2em -46.9em;
       width: 2em;
       height: 1.3em;
   }
@@ -185,16 +202,29 @@
 
 
   .ty-icon.ty-icon-success-lg:before {
-      background-position: -55em -44.4em;
+      background-position: -59.2em -48.2em;
       width: 3em;
       height: 3em;
+  }
+
+
+
+
+  .ty-icon.ty-icon-success-sm:before {
+      background-position: -62.2em -51.2em;
+      width: 1.3em;
+      height: 1.2em;
   }
 
 
 
 
   .ty-icon.ty-icon-voucher:before {
-      background-position: -58em -47.4em;
+      background-position: -63.5em -52.4em;
       width: 3em;
       height: 3em;
   }
+
+
+
+
