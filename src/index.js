@@ -261,6 +261,8 @@ class FeedbackOrderExperience extends React.Component {
       email_id: this.props.member_email
     };
     console.log("Send this in a POST request:", feedbackData);
+
+    this.setState({ rating: 4 });
   }
 
   render() {
@@ -537,7 +539,11 @@ class PaymentSummary extends React.Component {
                     className="ty-icon ty-icon-close"
                     onClick={handleMouseLeave}
                   />
-                  {this.props.paymentsummary.payment_status_msg.msg}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: this.props.paymentsummary.payment_status_msg.msg
+                    }}
+                  />
                 </div>
               )}
             </td>
