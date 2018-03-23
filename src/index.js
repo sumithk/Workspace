@@ -69,7 +69,7 @@ function SuccessIcon() {
             fill="transparent"
           />
         </svg>
-        <p className="text-primary txt-bold fadeIn">
+        <p className="text-primary txt-bold no-margin fadeIn">
           Yaay.. Your order is placed!
         </p>
       </div>
@@ -245,7 +245,6 @@ class FeedbackOrderExperience extends React.Component {
     this.setState({ feedback: e.target.value });
   }
   handleFeedbackClose() {
-    debugger;
     this.setState({ rating: 1 });
   }
   handleReferAndEarn() {
@@ -268,117 +267,122 @@ class FeedbackOrderExperience extends React.Component {
   render() {
     const rating = this.state.rating;
     return (
-      <div
-        className={
-          "section collapsible " +
-          (rating > 1 && rating <= 3 ? "" : "collapsed")
-        }
-      >
-        <div className="stars">
-          <form onSubmit={this.handleSubmit}>
-            <div className="grid-container2">
-              <div className="grid-item">How was everything?</div>
-              <div className="grid-item">
-                <input
-                  className="star star-5"
-                  id="star-5"
-                  type="radio"
-                  name="star"
-                  value="5"
-                  onChange={this.handleRadio}
-                />
-                <label className="star star-5" htmlFor="star-5" />
-                <input
-                  className="star star-4"
-                  id="star-4"
-                  type="radio"
-                  name="star"
-                  value="4"
-                  onChange={this.handleRadio}
-                />
-                <label className="star star-4" htmlFor="star-4" />
-                <input
-                  className="star star-3"
-                  id="star-3"
-                  type="radio"
-                  name="star"
-                  value="3"
-                  onChange={this.handleRadio}
-                />
-                <label className="star star-3" htmlFor="star-3" />
-                <input
-                  className="star star-2"
-                  id="star-2"
-                  type="radio"
-                  name="star"
-                  value="2"
-                  onChange={this.handleRadio}
-                />
-                <label className="star star-2" htmlFor="star-2" />
-                <input
-                  className="star star-1"
-                  id="star-1"
-                  type="radio"
-                  name="star"
-                  value="1"
-                  onChange={this.handleRadio}
-                />
-                <label className="star star-1" htmlFor="star-1" />
-              </div>
-            </div>
-            {rating == 1 && (
-              <div className="text-dark txt-bold fade">
-                Oho! Sorry for the inconvenience, We will get back to you
-                shortly{" "}
-              </div>
-            )}
-            {rating > 1 &&
-              rating <= 3 && (
-                <div className="feedback-form fade">
-                  <textarea
-                    className="form-control"
-                    value={this.state.feedback}
-                    name="feedback"
-                    placeholder="Tell us what went wrong."
-                    onChange={this.handleFeedback}
+      <div className={rating ? "pad-bot-25" : ""}>
+        <div
+          className={
+            "section collapsible " +
+            (rating > 1 && rating <= 3 ? "" : "collapsed")
+          }
+        >
+          <div className="stars">
+            <form onSubmit={this.handleSubmit}>
+              <div className="grid-container2">
+                <div className="grid-item">How was everything?</div>
+                <div className="grid-item">
+                  <input
+                    className="star star-5"
+                    id="star-5"
+                    type="radio"
+                    name="star"
+                    value="5"
+                    onChange={this.handleRadio}
                   />
-                  <div className="clearfix">
-                    <Ripples className="btn-ripple fl-rt" color="#666">
-                      <button type="submit" className="btn btn-secondary">
-                        SUBMIT
-                      </button>
-                    </Ripples>
-                    <Ripples className="btn-ripple fl-rt" color="#dfdfdf">
-                      <button
-                        type="button"
-                        className="btn btn-default"
-                        onClick={this.handleFeedbackClose}
-                      >
-                        NOT NOW
-                      </button>
-                    </Ripples>
-                  </div>
+                  <label className="star star-5" htmlFor="star-5" />
+                  <input
+                    className="star star-4"
+                    id="star-4"
+                    type="radio"
+                    name="star"
+                    value="4"
+                    onChange={this.handleRadio}
+                  />
+                  <label className="star star-4" htmlFor="star-4" />
+                  <input
+                    className="star star-3"
+                    id="star-3"
+                    type="radio"
+                    name="star"
+                    value="3"
+                    onChange={this.handleRadio}
+                  />
+                  <label className="star star-3" htmlFor="star-3" />
+                  <input
+                    className="star star-2"
+                    id="star-2"
+                    type="radio"
+                    name="star"
+                    value="2"
+                    onChange={this.handleRadio}
+                  />
+                  <label className="star star-2" htmlFor="star-2" />
+                  <input
+                    className="star star-1"
+                    id="star-1"
+                    type="radio"
+                    name="star"
+                    value="1"
+                    onChange={this.handleRadio}
+                  />
+                  <label className="star star-1" htmlFor="star-1" />
+                </div>
+              </div>
+              {rating == 1 && (
+                <div className="text-dark txt-bold fade">
+                  Oho! Sorry for the inconvenience, We will get back to you
+                  shortly{" "}
                 </div>
               )}
+              {rating > 1 &&
+                rating <= 3 && (
+                  <div className="feedback-form fade">
+                    <textarea
+                      className="form-control"
+                      value={this.state.feedback}
+                      name="feedback"
+                      placeholder="Tell us what went wrong."
+                      onChange={this.handleFeedback}
+                    />
+                    <div className="clearfix">
+                      <Ripples className="btn-ripple fl-rt" color="#666">
+                        <button
+                          type="submit"
+                          className="btn btn-secondary txt-bold text-large"
+                        >
+                          SUBMIT
+                        </button>
+                      </Ripples>
+                      <Ripples className="btn-ripple fl-rt" color="#dfdfdf">
+                        <button
+                          type="button"
+                          className="btn btn-default txt-bold text-large"
+                          onClick={this.handleFeedbackClose}
+                        >
+                          NOT NOW
+                        </button>
+                      </Ripples>
+                    </div>
+                  </div>
+                )}
 
-            {rating >= 4 && (
-              <div className="clearfix fade">
-                <div className="text-center seperator">
-                  <span>THANKS A LOT</span>
+              {rating >= 4 && (
+                <div className="clearfix fade">
+                  <div className="text-center seperator txt-bold">
+                    <span>THANKS A LOT</span>
+                  </div>
+                  <Ripples color="#dfdfdf">
+                    <button
+                      type="button"
+                      onClick={this.handleReferAndEarn}
+                      className="btn btn-default btn-refer"
+                    >
+                      <i className="ty-icon ty-icon-rupee-circle" />
+                      REFER & EARN
+                    </button>
+                  </Ripples>
                 </div>
-                <Ripples color="#dfdfdf">
-                  <button
-                    type="button"
-                    onClick={this.handleReferAndEarn}
-                    className="btn btn-default btn-refer"
-                  >
-                    <i className="ty-icon ty-icon-rupee-circle" />
-                    REFER & EARN
-                  </button>
-                </Ripples>
-              </div>
-            )}
-          </form>
+              )}
+            </form>
+          </div>
         </div>
       </div>
     );
@@ -438,9 +442,11 @@ class ShipmentSummary extends React.Component {
             <div>{this.props.order.item_count}</div>
             <div>Item{this.props.order.item_count > 1 && "s"}</div>
           </div>
-          <div className="grid-item slot">{this.props.order.slot_time}</div>
+          <div className="grid-item slot txt-bold">
+            {this.props.order.slot_time}
+          </div>
           <div className="grid-item price">
-            Rs {this.props.order.order_value}
+            Rs {Number(this.props.order.order_value)}
             <i className="ty-icon ty-icon-arrow-right" />
           </div>
         </div>
@@ -534,7 +540,7 @@ class PaymentSummary extends React.Component {
                 />
               )}
               {this.state.hovering && (
-                <div className="tooltip">
+                <div className="tooltip fade">
                   <span
                     className="ty-icon ty-icon-close"
                     onClick={handleMouseLeave}
@@ -551,13 +557,13 @@ class PaymentSummary extends React.Component {
           <tr>
             <td>Order Amount :</td>
             <td className="txt-bold text-left">
-              Rs {this.props.paymentsummary.order_amount}
+              Rs {Number(this.props.paymentsummary.order_amount)}
             </td>
           </tr>
           <tr>
             <td>You Saved :</td>
             <td className="text-primary text-left">
-              Rs {this.props.paymentsummary.total_savings}
+              Rs {Number(this.props.paymentsummary.total_savings)}
             </td>
           </tr>
         </tbody>
@@ -600,11 +606,28 @@ class OrderActions extends React.Component {
     window.location = "/support";
   }
   render() {
+    let gridClass = "";
     const ispaynow =
       this.props.orderactions.payment_status === "Pay On Delivery" ||
       this.props.orderactions.payment_status === "Failed";
+
+    const isVoucherApplied = this.props.orderactions.is_voucher_applied;
+    const isShopmore = this.props.orderactions.shop_more;
+
+    if (ispaynow && !isVoucherApplied && isShopmore) {
+      gridClass = "grid-container4-auto";
+    } else if (
+      (ispaynow && isVoucherApplied && isShopmore) ||
+      (!ispaynow && !isVoucherApplied && isShopmore)
+    ) {
+      gridClass = "grid-container3";
+    } else if (!ispaynow && isVoucherApplied && !isShopmore) {
+      gridClass = "grid-container1";
+    } else {
+      gridClass = "grid-container2-auto";
+    }
     return (
-      <div className="grid-container3 order-actions">
+      <div className={gridClass + " order-actions"}>
         {ispaynow && (
           <div
             className="grid-item card hvr-float-shadow"
@@ -620,7 +643,7 @@ class OrderActions extends React.Component {
           </div>
         )}
 
-        {!this.props.orderactions.is_voucher_applied && (
+        {!isVoucherApplied && (
           <div
             className="grid-item card hvr-float-shadow"
             onClick={this.handleVoucherClick}
@@ -637,7 +660,7 @@ class OrderActions extends React.Component {
           </div>
         )}
 
-        {this.props.orderactions.shop_more && (
+        {isShopmore && (
           <div
             className="grid-item card hvr-float-shadow"
             onClick={this.handleShopmoreClick}
@@ -727,68 +750,75 @@ class OrderPlacedWidget extends React.Component {
     let member_email = this.state.member_email;
 
     return (
-      <div className="content">
-        <div className="feedback-order-experience">
-          <SuccessIcon />
-          <FeedbackOrderExperience member_email={member_email} />
-        </div>
-        <div className="pannel">
-          {loader ? (
-            <Placeholder />
-          ) : (
-            <MemberDetails member_details={member_details} />
-          )}
-
-          {loader ? (
-            <div>
-              <div className="mar-top-15" />
-              <Placeholder />
-              <div className="mar-top-5" />
-              <Placeholder />
-            </div>
-          ) : (
-            orders.map(order => (
-              <ShipmentSummary key={order.order_id} order={order} />
-            ))
-          )}
-
-          <div className="grid-container2 orderinfo">
+      <div>
+        <div className="content">
+          <div className="feedback-order-experience">
+            <SuccessIcon />
+            <FeedbackOrderExperience member_email={member_email} />
+          </div>
+          <div className="pannel">
             {loader ? (
-              <div>
-                <Placeholder1 />
-                <Placeholder1 />
-              </div>
+              <Placeholder />
             ) : (
-              <VoucherSummary vouchersummary={vouchersummary} />
+              <MemberDetails member_details={member_details} />
             )}
+
             {loader ? (
               <div>
-                <Placeholder1 />
-                <Placeholder1 />
-                <Placeholder1 />
+                <div className="mar-top-15" />
+                <Placeholder />
+                <div className="mar-top-5" />
+                <Placeholder />
               </div>
             ) : (
-              <div className="grid-item paymentinfo">
-                <PaymentSummary paymentsummary={paymentsummary} />
+              orders.map(order => (
+                <ShipmentSummary key={order.order_id} order={order} />
+              ))
+            )}
+
+            <div className="grid-container2 orderinfo">
+              {loader ? (
+                <div>
+                  <Placeholder1 />
+                  <Placeholder1 />
+                </div>
+              ) : (
+                <VoucherSummary vouchersummary={vouchersummary} />
+              )}
+              {loader ? (
+                <div>
+                  <Placeholder1 />
+                  <Placeholder1 />
+                  <Placeholder1 />
+                </div>
+              ) : (
+                <div className="grid-item paymentinfo">
+                  <PaymentSummary paymentsummary={paymentsummary} />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          <div className="assistance">
+            {loader ? (
+              <div className="grid-container3">
+                <CardPlaceholder />
+                <CardPlaceholder />
+                <CardPlaceholder />
               </div>
+            ) : (
+              <OrderActions orderactions={orderactions} />
             )}
           </div>
         </div>
-        <div className="assistance">
-          {loader ? (
-            <div className="grid-container3">
-              <CardPlaceholder />
-              <CardPlaceholder />
-              <CardPlaceholder />
-            </div>
-          ) : (
-            <OrderActions orderactions={orderactions} />
-          )}
+        <div className="content">
+          <a href="/home" className="btn btn-primary btn-lg">
+            {loader && <BtnLoader />}
+            <span>CONTINUE SHOPPING</span>
+          </a>
         </div>
-        <a href="/home" className="btn btn-primary btn-lg">
-          {loader && <BtnLoader />}
-          <span>CONTINUE SHOPPING</span>
-        </a>
       </div>
     );
   }

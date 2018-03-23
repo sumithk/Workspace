@@ -10,7 +10,7 @@
           "order_id":"33666645",
           "voucher":"",
           "slot_time":"20 Mar, Tuesday 07:00 AM - 09:30 AM",
-          "order_value":"40.00",
+          "order_value":"40.30",
           "is_express":false,
           "order_type":"Normal",
           "item_count":1,
@@ -45,16 +45,16 @@
      }
     ],
     "order_details":{  
-       "is_voucher_applied":true,
-       "payment_status":"Failed",
+       "is_voucher_applied":false,
+       "payment_status":"Successfull",
        "payment_status_msg":{  
           "msg":"Your online payment on bigbasket was not successful. You can retry the payment again choosing <a href=\"/payment/pay_now/\" target=\"_blank\" style=\"text-decoration: underline\">pay now</a> option.Meanwhile, please do not worry,your has been converted to cash on delivery.",
           "msg_formatted_values":[  
  
           ]
        },
-       "shop_more":false,
-       "order_amount":"40.00",
+       "shop_more":true,
+       "order_amount":"40.20",
        "total_savings":"0.00",
        "voucher_msg":"The cashback amount Rs 500 will be credited within 5 days"
     },
