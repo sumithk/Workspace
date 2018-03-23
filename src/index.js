@@ -436,7 +436,7 @@ class ShipmentSummary extends React.Component {
                   : "ty-icon-std-delivery")
               }
             />
-            Shipment 1: {this.props.order.order_type}
+            Shipment {this.props.index}: {this.props.order.order_type}
           </div>
           <div className="grid-item items">
             <div>{this.props.order.item_count}</div>
@@ -460,7 +460,8 @@ ShipmentSummary.propTypes = {
   order_type: PropTypes.string,
   item_count: PropTypes.string,
   slot_time: PropTypes.string,
-  order_value: PropTypes.string
+  order_value: PropTypes.string,
+  index: PropTypes.number
 };
 //Component ShipmentSummary
 
@@ -579,6 +580,65 @@ PaymentSummary.propTypes = {
 };
 //Component Orderinfo
 
+//Component modal
+class Modal extends React.Component {
+  render() {
+    if (this.props.isOpen === false) return null;
+
+    let modalStyle = {
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: "9999",
+      background: "#fff"
+    };
+
+    let backdropStyle = {
+      position: "fixed",
+      width: "100%",
+      height: "100%",
+      top: "0px",
+      left: "0px",
+      zIndex: "9998",
+      background: "rgba(0, 0, 0, 0.3)"
+    };
+
+    return (
+      <div className={this.props.containerClassName}>
+        <div className={this.props.className} style={modalStyle}>
+          {this.props.children}
+        </div>
+        {this.props.isOpen && (
+          <div
+            className={this.props.backdropClassName}
+            style={backdropStyle}
+            // onClick={e => this.close(e)}
+          />
+        )}
+      </div>
+    );
+  }
+
+  close(e) {
+    e.preventDefault();
+
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
+  }
+}
+Modal.propTypes = {
+  isOpen: PropTypes.bool,
+  containerClassName: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.string,
+  backdropClassName: PropTypes.string,
+  onClose: PropTypes.func
+};
+
+//Component modal
+
 //OrderActions section
 class OrderActions extends React.Component {
   constructor() {
@@ -587,7 +647,7 @@ class OrderActions extends React.Component {
     this.handleVoucherClick = this.handleVoucherClick.bind(this);
     this.handleShopmoreClick = this.handleShopmoreClick.bind(this);
     this.handleSupportClick = this.handleSupportClick.bind(this);
-    this.state = { isLoaded: false };
+    this.state = { isModalOpen: false };
   }
 
   handlePaynowClick() {
@@ -599,7 +659,17 @@ class OrderActions extends React.Component {
   }
 
   handleShopmoreClick() {
-    window.location = "/shopmore";
+    this.setState({
+      showAddmore: true
+    });
+  }
+
+  openModal() {
+    this.setState({ isModalOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false });
   }
 
   handleSupportClick() {
@@ -626,65 +696,82 @@ class OrderActions extends React.Component {
     } else {
       gridClass = "grid-container2-auto";
     }
+
     return (
-      <div className={gridClass + " order-actions"}>
-        {ispaynow && (
-          <div
-            className="grid-item card hvr-float-shadow"
-            onClick={this.handlePaynowClick}
-          >
-            <div className="text-blue txt-bold text-medium">
-              <i className="ty-icon ty-icon-voucher" />PAY NOW
+      <div>
+        <div className={gridClass + " order-actions"}>
+          {ispaynow && (
+            <div
+              className="grid-item card hvr-float-shadow"
+              onClick={this.handlePaynowClick}
+            >
+              <div className="text-blue txt-bold text-medium">
+                <i className="ty-icon ty-icon-voucher" />PAY NOW
+              </div>
+              <p className="text-meduim txt-bold">Pay online for this order</p>
+              <p className="text-light">
+                Complete order payment for cash-free delivery
+              </p>
             </div>
-            <p className="text-meduim txt-bold">Pay online for this order</p>
-            <p className="text-light">
-              Complete order payment for cash-free delivery
-            </p>
-          </div>
-        )}
+          )}
 
-        {!isVoucherApplied && (
-          <div
-            className="grid-item card hvr-float-shadow"
-            onClick={this.handleVoucherClick}
-          >
-            <div className="text-blue txt-bold text-medium">
-              <i className="ty-icon ty-icon-add-item" />FORGOT VOUCHER?
+          {!isVoucherApplied && (
+            <div
+              className="grid-item card hvr-float-shadow"
+              onClick={this.handleVoucherClick}
+            >
+              <div className="text-blue txt-bold text-medium">
+                <i className="ty-icon ty-icon-add-item" />FORGOT VOUCHER?
+              </div>
+              <p className="text-meduim txt-bold">
+                Add more items to your order{" "}
+              </p>
+              <p className="text-light">
+                Same time delivery with no extra delivery charges!
+              </p>
             </div>
-            <p className="text-meduim txt-bold">
-              Add more items to your order{" "}
-            </p>
-            <p className="text-light">
-              Same time delivery with no extra delivery charges!
-            </p>
-          </div>
-        )}
+          )}
 
-        {isShopmore && (
+          {isShopmore && (
+            <div
+              className="grid-item card hvr-float-shadow"
+              onClick={() => this.openModal()}
+            >
+              <div className="text-blue txt-bold text-medium">
+                <i className="ty-icon ty-icon-add-item" />FORGOT ITEM?
+              </div>
+              <p className="text-meduim txt-bold">
+                Add more items to your order{" "}
+              </p>
+              <p className="text-light">
+                Same time delivery with no extra delivery charges!
+              </p>
+            </div>
+          )}
           <div
             className="grid-item card hvr-float-shadow"
-            onClick={this.handleShopmoreClick}
+            onClick={this.handleSupportClick}
           >
             <div className="text-blue txt-bold text-medium">
-              <i className="ty-icon ty-icon-add-item" />FORGOT ITEM?
+              <i className="ty-icon ty-icon-help" />HELP
             </div>
-            <p className="text-meduim txt-bold">
-              Add more items to your order{" "}
-            </p>
-            <p className="text-light">
-              Same time delivery with no extra delivery charges!
-            </p>
+            <p className="text-meduim txt-bold">Need more assistance?</p>
+            <p className="text-light">Let us help you for all your queries!</p>
           </div>
-        )}
-        <div
-          className="grid-item card hvr-float-shadow"
-          onClick={this.handleSupportClick}
-        >
-          <div className="text-blue txt-bold text-medium">
-            <i className="ty-icon ty-icon-help" />HELP
-          </div>
-          <p className="text-meduim txt-bold">Need more assistance?</p>
-          <p className="text-light">Let us help you for all your queries!</p>
+        </div>
+        <div>
+          <Modal
+            isOpen={this.state.isModalOpen}
+            onClose={() => this.closeModal()}
+            className="modal fade"
+          >
+            <div className="modal-header">Modal title</div>
+            <div> Modal body </div>
+            <span
+              onClick={() => this.closeModal()}
+              className="ty-icon ty-icon-close"
+            />
+          </Modal>
         </div>
       </div>
     );
@@ -771,8 +858,8 @@ class OrderPlacedWidget extends React.Component {
                 <Placeholder />
               </div>
             ) : (
-              orders.map(order => (
-                <ShipmentSummary key={order.order_id} order={order} />
+              orders.map((order, index) => (
+                <ShipmentSummary key={index} order={order} />
               ))
             )}
 

@@ -46,7 +46,7 @@
     ],
     "order_details":{  
        "is_voucher_applied":false,
-       "payment_status":"Successfull",
+       "payment_status":"Failed",
        "payment_status_msg":{  
           "msg":"Your online payment on bigbasket was not successful. You can retry the payment again choosing <a href=\"/payment/pay_now/\" target=\"_blank\" style=\"text-decoration: underline\">pay now</a> option.Meanwhile, please do not worry,your has been converted to cash on delivery.",
           "msg_formatted_values":[  
