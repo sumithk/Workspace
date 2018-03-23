@@ -632,7 +632,7 @@ Modal.propTypes = {
   isOpen: PropTypes.bool,
   containerClassName: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.node,
   backdropClassName: PropTypes.string,
   onClose: PropTypes.func
 };
